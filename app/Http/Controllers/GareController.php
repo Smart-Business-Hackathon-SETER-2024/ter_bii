@@ -15,7 +15,7 @@ class GareController extends Controller
 
         //return response()->json(Gare::all()->with('boutiques')->get());
         $gares = Gare::with('boutiques')->get();
-        return response()->json(GareResource::collection($gares));
+            return response()->json(GareResource::collection($gares));
     }
 
     /**

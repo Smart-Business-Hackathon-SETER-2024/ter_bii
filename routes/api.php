@@ -80,6 +80,8 @@ Route::group([
     Route::delete('/delete/{id}', [TrajetController::class, 'destroy']);
 });
 
+Route::get('/historiques', [TicketController::class, 'historiquesTickets']);
+
 Route::group([
     'middleware' => 'api',
     'prefix' => 'tickets',

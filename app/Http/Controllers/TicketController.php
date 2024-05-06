@@ -52,5 +52,30 @@ class TicketController extends Controller
     {
         //
     }
+    // public function historiquesTickets(){
+    //     $tickets = Ticket::where('users_id', auth()->user())->first();
+
+    //     if(!$tickets){
+    //         return response()->json(['message' => 'Votre historique de ticket est vide. Veiller acheter un ticket'],
+    //          404);
+    //     }
+    //     else{
+    //         // return response()->json(TicketResource::collection($tickets));
+    //         return response()->json($tickets);
+    //     }
+    // }
+        public function historiquesTickets()
+    {
+        $user_id = Auth::user()->id;
+
+        $tickets = Ticket::where('users_id', $user_id)->get();
+        // dd( $tickets);
+
+        if ($tickets->isEmpty()) {
+            return response()->json(['message' => 'Aucun ticket trouvé dans votre historiques'], 404);
+        }
+
+        return response()->json($tickets);
+    }
 
 }
